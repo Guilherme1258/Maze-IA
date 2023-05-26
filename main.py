@@ -5,7 +5,7 @@ from dfs import *
 from dijkstra import *
 # from bestFirst import *
 # from aStar import *
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 
 def execucaoMaze(tamanho = 30, possibilidadeCaminhos = 100, algoritmo = str):
@@ -16,11 +16,11 @@ def execucaoMaze(tamanho = 30, possibilidadeCaminhos = 100, algoritmo = str):
     m.CreateMaze(goalX, goalY, loopPercent = possibilidadeCaminhos)
     
     # Inclusao dos agentes no ambiente
-    agentBfs = agent(m, footprints = True, color = COLOR.cyan, shape = 'square', filled = True)
-    agentDfs = agent(m, footprints = True, color = 'green', shape = 'square', filled = True)
-    agentDijkstra = agent(m, footprints = True, color = 'red', shape = 'arrow', filled = True)
-    agentBestFirst = agent(m, footprints = True, color = 'blue', shape = 'arrow', filled = True)
-    agentAStar = agent(m, footprints = True, color = 'yellow', shape = 'arrow', filled = True)
+    agentBfs = agent(m, footprints = True, color = COLOR.red, filled = True)
+    agentDfs = agent(m, footprints = True, color = COLOR.cyan, filled = True)
+    agentDijkstra = agent(m, footprints = True, color = COLOR.black, filled = True)
+    agentBestFirst = agent(m, footprints = True, color = COLOR.blue, filled = True)
+    agentAStar = agent(m, footprints = True, color = COLOR.green, filled = True)
     
 
     path1 = bfs(m)

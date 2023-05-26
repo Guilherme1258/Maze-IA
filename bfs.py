@@ -37,7 +37,9 @@ def bfs(labirinto):
 
     fwdPath = {}
     cell = labirinto._goal
+
     while cell != inicio:
         fwdPath[bfsPath[cell]]=cell
         cell = bfsPath[cell]
+        
     return fwdPath
