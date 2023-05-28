@@ -9,7 +9,7 @@ def bfs(labirinto):
     bfsPath = {}
 
     while fronteira != []:
-        vertice = fronteira.pop(0)
+        vertice=fronteira.pop(0)
         nosVisitados.append(vertice)
 
         if vertice == labirinto._goal:
