@@ -29,11 +29,11 @@ def execucaoMaze(tamanho = 30, possibilidadeCaminhos = 100, algoritmo = str):
     agentAStar = agent(m, footprints = True, color = COLOR.green, filled = True)
     
     legenda_labels = []
-    legenda_labels.append(create_label(m._canvas, "BFS", 1010, 965, "red"))
-    legenda_labels.append(create_label(m._canvas, "DFS", 1060, 965, "cyan"))
-    legenda_labels.append(create_label(m._canvas, "Dijkstra", 1110, 965, "black"))
-    legenda_labels.append(create_label(m._canvas, "Best First", 1190, 965, "blue"))
-    legenda_labels.append(create_label(m._canvas, "A*", 1285, 965, "green"))
+    legenda_labels.append(create_label(m._canvas, "BFS", 1010, 940, "red"))
+    legenda_labels.append(create_label(m._canvas, "DFS", 1070, 940, "cyan"))
+    legenda_labels.append(create_label(m._canvas, "Dijkstra", 1130, 940, "black"))
+    legenda_labels.append(create_label(m._canvas, "Best First", 1220, 940, "blue"))
+    legenda_labels.append(create_label(m._canvas, "A*", 1330, 940, "green"))
 
     path1 = bfs(m)
     path2 = dfs(m)
