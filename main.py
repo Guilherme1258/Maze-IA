@@ -6,7 +6,13 @@ from dijkstra import *
 # from bestFirst import *
 # from aStar import *
 #import matplotlib.pyplot as plt
+import tkinter as tk
 
+def create_label(canvas, text, x, y, color):
+    label = tk.Label(canvas, text=text, bg="white", fg=color, font=("Helvetica", 12, "bold"), bd=5, relief="solid",
+                     padx=8, pady=4, highlightbackground=color)
+    label.place(x=x, y=y)
+    return label
 
 def execucaoMaze(tamanho = 30, possibilidadeCaminhos = 100, algoritmo = str):
     
@@ -22,6 +28,12 @@ def execucaoMaze(tamanho = 30, possibilidadeCaminhos = 100, algoritmo = str):
     agentBestFirst = agent(m, footprints = True, color = COLOR.blue, filled = True)
     agentAStar = agent(m, footprints = True, color = COLOR.green, filled = True)
     
+    legenda_labels = []
+    legenda_labels.append(create_label(m._canvas, "BFS", 1010, 965, "red"))
+    legenda_labels.append(create_label(m._canvas, "DFS", 1060, 965, "cyan"))
+    legenda_labels.append(create_label(m._canvas, "Dijkstra", 1110, 965, "black"))
+    legenda_labels.append(create_label(m._canvas, "Best First", 1190, 965, "blue"))
+    legenda_labels.append(create_label(m._canvas, "A*", 1285, 965, "green"))
 
     path1 = bfs(m)
     path2 = dfs(m)
@@ -35,8 +47,10 @@ def execucaoMaze(tamanho = 30, possibilidadeCaminhos = 100, algoritmo = str):
                 agentDijkstra:path3})
     m.run()
 
+    for label in legenda_labels:
+        label.destroy()
 
 
 if __name__ == '__main__':
-    execucaoMaze(tamanho = 50)
+    execucaoMaze(tamanho = 20)
     # execucaoMaze(tamanho=100, algoritmo="dfs")
