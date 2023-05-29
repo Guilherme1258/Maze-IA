@@ -1,39 +1,49 @@
-from math import sqrt
-
-def getVizinhos(celula, labirinto):
-    return  
+import random
 
 def bestFirst(labirinto):
+    inicio = (labirinto.rows, labirinto.cols)
     fronteira = []
-    caminhos = []
-    celulasVisitadas = []
-    statusLabirinto = []
+    nosVisitados = []
+    fronteira.append(inicio)
 
-    destino = labirinto.getDestino()
-
-    fronteira.append(labirinto.getPosicaoInicio())
+    bestFirstPath = {}
 
     while fronteira != []:
-        # Imprime Fronteira
-        statusLabirinto.append(labirinto.getLabirintoPlot(posicoes=fronteira, cores=(0, 255, 127)))
+        fronteira.sort(key=lambda x: heuristica(x, labirinto._goal))  # Ordena a fronteira com base na heurística
 
-        celula = fronteira.pop(0) # Selecionando o primeiro elemento da lista
-        celulasVisitadas.append(celula)
-        caminhos.append(celula)
+        vertice = fronteira.pop(0)
+        nosVisitados.append(vertice)
 
-        if celula == labirinto.getDestino():
-            print("Objetivo", celula, "encontrado")
-            # caminhoEncontrado = selecionaCaminho(caminhos, labirinto.getDestino())
-            # statusLabirinto.append(labirinto.getLabirintoPlot(posicoes=caminhoEncontrado, cores=(0, 0, 255)))
-            return statusLabirinto
+        if vertice == labirinto._goal:
+            print("Objetivo encontrado")
+            break
 
-        else:
-            vizinhos = getVizinhos(celula, labirinto)
-            for vizinho in vizinhos:
-                if vizinho not in celulasVisitadas:
+        movimentos = ["E", "S", "N", "W"]
+        random.shuffle(movimentos)
+
+        for d in movimentos:
+            if labirinto.maze_map[vertice][d] == True:
+                if d == 'E':
+                    vizinho = (vertice[0], vertice[1] + 1)
+                if d == 'W':
+                    vizinho = (vertice[0], vertice[1] - 1)
+                if d == 'N':
+                    vizinho = (vertice[0] - 1, vertice[1])
+                if d == 'S':
+                    vizinho = (vertice[0] + 1, vertice[1])
+
+                if vizinho not in nosVisitados and vizinho not in fronteira:
                     fronteira.append(vizinho)
-                
-                    # Ordena a fronteira de acordo com a heuristica de menor distância entre os vizinhos e o destino
-                    fronteira.sort(key=lambda x: sqrt(abs(pow(x[0] - destino[0], 2)) + abs(pow(x[1] - destino[1], 2)))) # distancia euclidiana
+                    bestFirstPath[vizinho] = vertice
 
-    print("Objetivo nao existente no grafo")
+    fwdPath = {}
+    cell = labirinto._goal
+
+    while cell != inicio:
+        fwdPath[bestFirstPath[cell]] = cell
+        cell = bestFirstPath[cell]
+
+    return fwdPath
+
+def heuristica(posicao, destino):
+    return abs(posicao[0] - destino[0]) + abs(posicao[1] - destino[1])
