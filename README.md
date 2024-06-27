@@ -6,12 +6,12 @@
  
 Using the pyamaze library to generate mazes and implement the following search algorithms:
 
--Breadth-first search-
+-Breadth-first search (RED)
 
--Depth search-
+-Depth search (CYAN)
 
--Minimum cost search (Dijkstra)-
+-Minimum cost search (Dijkstra) (BLACK) 
 
--Best-first-
+-Best-first (GREEN)
 
--A*-
+-A* (YELLOW)
